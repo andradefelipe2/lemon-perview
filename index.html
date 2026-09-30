@@ -80,11 +80,17 @@ nav.scrolled{box-shadow:0 6px 24px -12px rgba(0,0,0,.4);border-bottom-color:tran
 .ghost:hover{background:rgba(201,176,103,.1);border-color:var(--gold)}
 
 /* hero */
-.hero{position:relative;padding:130px 0 80px;background:
+.hero{position:relative;padding:130px 0 80px;overflow:hidden;background:
     radial-gradient(ellipse 70% 55% at 82% 30%, rgba(227,207,136,.08), transparent 60%),
     radial-gradient(ellipse 50% 40% at 10% 90%, rgba(92,141,103,.08), transparent 65%);
 }
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:center}
+/* Limão decorativo girando */
+.lemon-deco{position:absolute;pointer-events:none;z-index:0;color:var(--gold)}
+.lemon-deco svg{width:100%;height:100%;display:block}
+.lemon-hero{top:-80px;right:-110px;width:clamp(300px,42vw,520px);height:clamp(300px,42vw,520px);opacity:.07;animation:lemonSpin 90s linear infinite}
+@keyframes lemonSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:center;position:relative;z-index:1}
 .hero h1{font-size:clamp(38px,5.6vw,62px);line-height:1.08;letter-spacing:-.015em}
 .hero h1 .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.12em}
 .hero h1 .w i{display:inline-block;font-style:normal;transform:translateY(105%);animation:up .9s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--i)*70ms)}
@@ -130,7 +136,7 @@ nav.scrolled{box-shadow:0 6px 24px -12px rgba(0,0,0,.4);border-bottom-color:tran
 .shield-badge .sub-txt{font-size:9px;color:var(--mute);line-height:1.2}
 
 /* hero tags */
-.hero-tags{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);margin-top:72px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.hero-tags{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);margin-top:72px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;z-index:1}
 .hero-tags li{display:flex;align-items:center;gap:14px;padding:22px 24px;border-right:1px solid var(--line);position:relative;animation:fadeUp .7s cubic-bezier(.2,.7,.2,1) both;transition:background .25s}
 .hero-tags li:hover{background:rgba(201,176,103,.05)}
 .hero-tags li:nth-child(1){animation-delay:1.4s}
@@ -218,6 +224,21 @@ h2{font-size:clamp(28px,4vw,44px);line-height:1.15}
 .rows b{display:block;font-weight:500;font-size:17px;overflow-wrap:anywhere}
 .rows span{font-size:13px;color:var(--mute)}
 
+/* MAPA */
+.map-sec{position:relative;overflow:hidden;background:var(--bg)}
+.map-head{text-align:center;max-width:640px;margin:0 auto 40px;position:relative;z-index:1}
+.map-head p{color:var(--mute);margin-top:14px}
+.lemon-map{top:-60px;left:-90px;width:clamp(200px,28vw,340px);height:clamp(200px,28vw,340px);opacity:.06;animation:lemonSpin 120s linear infinite reverse}
+.map-frame{position:relative;z-index:1;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--bg2);box-shadow:0 40px 70px -40px rgba(0,0,0,.5)}
+.map-frame iframe{width:100%;height:440px;border:0;display:block;filter:grayscale(.15) contrast(1.02)}
+[data-theme=dark] .map-frame iframe{filter:invert(.92) hue-rotate(180deg) contrast(.9) saturate(.75)}
+.map-actions{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 26px;border-top:1px solid var(--line);background:var(--bg2);flex-wrap:wrap}
+.map-info{display:flex;align-items:center;gap:14px;min-width:0}
+.map-info > svg{width:24px;height:24px;color:var(--gold);flex:none}
+.map-info b{display:block;font-weight:500;font-size:16.5px;line-height:1.2}
+.map-info span{font-size:13px;color:var(--mute);display:block;margin-top:2px}
+.map-actions .btn{white-space:nowrap}
+
 footer{padding:28px 0;border-top:1px solid var(--line);color:var(--mute);font-size:13px;text-align:center}
 footer .brand{justify-content:center;margin-bottom:6px;color:var(--tx)}
 .wa{position:fixed;right:20px;bottom:calc(22px + env(safe-area-inset-bottom,0));width:58px;height:58px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 10px 24px rgba(0,0,0,.35);z-index:60;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
@@ -238,6 +259,8 @@ footer .brand{justify-content:center;margin-bottom:6px;color:var(--tx)}
  .hero-tags li:nth-child(2n+1){padding-left:0}
  .hero-tags li:nth-child(n+3){border-bottom:0}
  .menu-grid{grid-template-columns:1fr}
+ .lemon-hero{width:280px;height:280px;top:-60px;right:-100px}
+ .map-frame iframe{height:360px}
 }
 @media(max-width:860px){
  .links{display:none}
@@ -250,6 +273,9 @@ footer .brand{justify-content:center;margin-bottom:6px;color:var(--tx)}
  .seal-num{font-size:30px}
  .shield-badge{width:108px;height:108px}
  .shield-badge .num{font-size:24px}
+ .map-actions{flex-direction:column;align-items:stretch;text-align:left}
+ .map-actions .btn{justify-content:center}
+ .map-frame iframe{height:300px}
 }
 </style>
 </head>
@@ -270,16 +296,15 @@ footer .brand{justify-content:center;margin-bottom:6px;color:var(--tx)}
     <a href="#sobre">Sobre Nós</a>
     <a href="#cardapio">Cardápio</a>
     <a href="#horarios">Horários</a>
+    <a href="#mapa">Localização</a>
     <a href="#contato">Reservas</a>
   </div>
   <div class="nav-r">
-    <!-- Status de Funcionamento dinâmico -->
     <div id="status-pill" class="status-pill">
       <span class="status-dot"></span>
       <span id="status-text">Verificando...</span>
     </div>
 
-    <!-- Ícone do Instagram em SVG -->
     <a class="icon-btn" href="https://instagram.com/lemonrestaurante" target="_blank" rel="noopener" aria-label="Instagram do Lemon Restaurante">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
@@ -294,8 +319,27 @@ footer .brand{justify-content:center;margin-bottom:6px;color:var(--tx)}
 </div></nav>
 
 <main>
-<section class="hero" id="topo"><div class="wrap">
+<section class="hero" id="topo">
 
+  <!-- Limão decorativo girando -->
+  <div class="lemon-deco lemon-hero" aria-hidden="true">
+    <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="100" cy="100" r="88"/>
+      <circle cx="100" cy="100" r="78" opacity="0.55"/>
+      <g opacity="0.75">
+        <line x1="100" y1="100" x2="100" y2="22"/>
+        <line x1="100" y1="100" x2="167.5" y2="61"/>
+        <line x1="100" y1="100" x2="167.5" y2="139"/>
+        <line x1="100" y1="100" x2="100" y2="178"/>
+        <line x1="100" y1="100" x2="32.5" y2="139"/>
+        <line x1="100" y1="100" x2="32.5" y2="61"/>
+      </g>
+      <circle cx="100" cy="100" r="8" opacity="0.7"/>
+      <circle cx="100" cy="100" r="4" opacity="0.5"/>
+    </svg>
+  </div>
+
+  <div class="wrap">
   <div class="hero-grid">
     <div class="hero-copy">
       <h1 id="h1">Não temos rótulos, temos apenas <span class="g">comida</span></h1>
@@ -329,8 +373,8 @@ footer .brand{justify-content:center;margin-bottom:6px;color:var(--tx)}
     <li><i data-lucide="pizza"></i><div><b>Pizzas</b><span>Massa de longa fermentação</span></div></li>
     <li><i data-lucide="glass-water"></i><div><b>Coquetéis</b><span>Drinks autorais & clássicos</span></div></li>
   </ul>
-
-</div></section>
+  </div>
+</section>
 
 <section class="sec sobre" id="sobre"><div class="wrap">
   <div>
@@ -550,7 +594,6 @@ footer .brand{justify-content:center;margin-bottom:6px;color:var(--tx)}
   <div class="rows rv">
     <a href="https://wa.me/5511993547992" target="_blank" rel="noopener"><i data-lucide="phone"></i><div><b>(11) 99354-7992</b><span>WhatsApp para Reservas</span></div></a>
     
-    <!-- Ícone SVG do Instagram na área de contatos -->
     <a href="https://instagram.com/lemonrestaurante" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
@@ -561,6 +604,59 @@ footer .brand{justify-content:center;margin-bottom:6px;color:var(--tx)}
     <a href="https://maps.google.com/?q=Rua+Roque+de+Morais+71+Bairro+do+Lim%C3%A3o+SP" target="_blank" rel="noopener"><i data-lucide="map-pin"></i><div><b>Rua Roque de Morais, 71</b><span>Bairro do Limão — São Paulo/SP</span></div></a>
   </div>
 </div></section>
+
+<!-- MAPA / LOCALIZAÇÃO -->
+<section class="sec map-sec" id="mapa">
+
+  <!-- Limão decorativo girando (menor, no canto) -->
+  <div class="lemon-deco lemon-map" aria-hidden="true">
+    <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="100" cy="100" r="88"/>
+      <circle cx="100" cy="100" r="78" opacity="0.55"/>
+      <g opacity="0.75">
+        <line x1="100" y1="100" x2="100" y2="22"/>
+        <line x1="100" y1="100" x2="167.5" y2="61"/>
+        <line x1="100" y1="100" x2="167.5" y2="139"/>
+        <line x1="100" y1="100" x2="100" y2="178"/>
+        <line x1="100" y1="100" x2="32.5" y2="139"/>
+        <line x1="100" y1="100" x2="32.5" y2="61"/>
+      </g>
+      <circle cx="100" cy="100" r="8" opacity="0.7"/>
+      <circle cx="100" cy="100" r="4" opacity="0.5"/>
+    </svg>
+  </div>
+
+  <div class="wrap">
+    <div class="map-head">
+      <h2 class="rv">Como Chegar</h2>
+      <p class="rv">Estamos no coração do Bairro do Limão, Zona Norte de São Paulo. Toque em <b>Traçar Rota</b> para abrir direto no GPS do seu celular.</p>
+    </div>
+
+    <div class="map-frame rv">
+      <iframe
+        src="https://www.google.com/maps?q=Rua%20Roque%20de%20Morais%2C%2071%20-%20Bairro%20do%20Lim%C3%A3o%2C%20S%C3%A3o%20Paulo%20-%20SP&z=16&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Mapa - Lemon Restaurante, Rua Roque de Morais 71"
+        allowfullscreen></iframe>
+
+      <div class="map-actions">
+        <div class="map-info">
+          <i data-lucide="map-pin"></i>
+          <div>
+            <b>Rua Roque de Morais, 71</b>
+            <span>Bairro do Limão — São Paulo/SP</span>
+          </div>
+        </div>
+        <a class="btn gold"
+           href="https://www.google.com/maps/dir/?api=1&destination=Rua+Roque+de+Morais%2C+71+-+Bairro+do+Lim%C3%A3o%2C+S%C3%A3o+Paulo+-+SP"
+           target="_blank" rel="noopener">
+          <i data-lucide="navigation"></i> Traçar Rota
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 </main>
 
 <footer><div class="wrap">
@@ -586,37 +682,27 @@ tt.onclick = function(){
   syncThemeBtn();
 };
 
-// Lógica de Funcionamento segundo horário de Brasília (UTC-3)
+// Lógica de Funcionamento segundo horário de Brasília
 function updateStoreStatus() {
   var pill = document.getElementById('status-pill');
   var txt = document.getElementById('status-text');
-  
-  // Obter data/hora atual no fuso horário de Brasília
   var now = new Date();
   var spDateStr = now.toLocaleString("en-US", {timeZone: "America/Sao_Paulo"});
   var spDate = new Date(spDateStr);
-  
-  var day = spDate.getDay(); // 0 = Dom, 1 = Seg, 2 = Ter, 3 = Qua, 4 = Qui, 5 = Sex, 6 = Sáb
+  var day = spDate.getDay();
   var hour = spDate.getHours();
   var mins = spDate.getMinutes();
   var timeVal = hour + (mins / 60);
 
   var isOpen = false;
 
-  // Lógica dos horários:
-  // Terça a Quinta: 12h às 15h e 18h às 22.5h
-  // Sexta: 12h às 15h e 18h às 23h
-  // Sábado: 12h às 23h
-  // Domingo: 12h às 18h
-  // Segunda: Fechado (0)
-
-  if (day >= 2 && day <= 4) { // Ter a Qui
+  if (day >= 2 && day <= 4) {
     if ((timeVal >= 12 && timeVal < 15) || (timeVal >= 18 && timeVal < 22.5)) isOpen = true;
-  } else if (day === 5) { // Sex
+  } else if (day === 5) {
     if ((timeVal >= 12 && timeVal < 15) || (timeVal >= 18 && timeVal < 23)) isOpen = true;
-  } else if (day === 6) { // Sáb
+  } else if (day === 6) {
     if (timeVal >= 12 && timeVal < 23) isOpen = true;
-  } else if (day === 0) { // Dom
+  } else if (day === 0) {
     if (timeVal >= 12 && timeVal < 18) isOpen = true;
   }
 
@@ -630,7 +716,7 @@ function updateStoreStatus() {
 }
 
 updateStoreStatus();
-setInterval(updateStoreStatus, 60000); // Atualiza a cada 1 minuto
+setInterval(updateStoreStatus, 60000);
 
 // Nav Scrolled
 var nav = document.getElementById('topnav');
